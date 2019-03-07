@@ -32,10 +32,6 @@ export default new Router({
           path: '/',
           name: 'VoteIndex',
           component: VoteList
-        },{
-          path: '/votelist',
-          name: 'lists',
-          component: VoteList
         }
       ]
     }

@@ -1,12 +1,16 @@
 <template>
-    <div>
-        <el-container style="width:80%; border: 1px solid #eee">
-            <el-header>header</el-header>
-            <el-main>main
+        <el-container style="width: 70%;margin:auto;margin-top: -50px;">
+            <el-header style="border-bottom: 1px solid #ddd;">
+                <span style="float:left;line-height: 60px;font-size: 22px; ">在线投票系统</span>
+                
+                <el-button type="primary" icon="el-icon-edit" size="mini" style="float: right; margin-top: 18px;">新建投票</el-button>
+                
+                <el-button plain size="mini" style="float: right;margin-right: 10px; margin-top: 18px;">我的投票</el-button>
+            </el-header>
+            <el-main style="border: 1px solid #fff;">
                 <router-view></router-view>
             </el-main>
         </el-container>
-    </div>
 </template>
 
 <script>
