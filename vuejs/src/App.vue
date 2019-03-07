@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h2>- 在线投票系统 -</h2>
     <router-view></router-view>
   </div>
 </template>
