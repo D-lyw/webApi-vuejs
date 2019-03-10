@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\ASUS-PC\\Desktop\\D-lyw\\webApi-vuejs\\Web-API\\Web-API.csproj",
+  "TargetFramework": "v4.6.1",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

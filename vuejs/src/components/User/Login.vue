@@ -42,10 +42,28 @@ export default {
     },
     methods: {
         UserLogin(){
+            var data = {
+                username: this.username,
+                password: this.password
+            }
             // 判断用户名和密码
-
-            // ok
-            this.$router.push({path: '/home'});
+            this.axios.post(this.url + '/Login', data)
+                .then((data) => {
+                    console.log(data.data);
+                    if (data.data == 1) {
+                        // 登陆成功
+                        // this.prototype.uname = this.username;
+                        this.$router.push('/home/Index')
+                    } else {
+                        // 登陆错误
+                        this.$message.error('账号或密码错误！');
+                    }
+                }).catch((err) => {
+                        this.$message.error('程序出错');
+                        this.$router.push('/home/Index')
+                })
+            
+            
         },
         JumpToRegister(){
             this.$router.push('/register');

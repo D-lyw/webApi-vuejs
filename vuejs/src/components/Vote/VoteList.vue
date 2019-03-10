@@ -1,39 +1,22 @@
 <template>
-    <div>
-        <el-card class="box-card">
+    <div style="display:flex;flex-direction: row;flex-wrap:wrap;">
+        <el-card class="box-card" 
+            v-for="(obj, index) in msgList"
+            :key="index" >
             <div slot="header" class="clearfix">
-                <span>卡片名称</span>
-                <el-button style="float: right; padding: 3px 0" type="text">进入投票</el-button>
+                <span>{{obj.Title}}</span>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="goToClick(obj.ItemId)">进入投票</el-button>
             </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
+            <div v-for="o in obj.Items" :key="o" class="text item">
+                {{o}}
             </div>
-        </el-card>
-
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span class="cardName">卡片名称</span>
-                <el-button style="float: right; padding: 3px 0" type="text">进入投票</el-button>
-            </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
-            </div>
-        </el-card> <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span class="cardName">卡片名称</span>
-                <el-button style="float: right; padding: 3px 0" type="text">进入投票</el-button>
-            </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
-            </div>
-        </el-card> <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span class="cardName">卡片名称</span>
-                <el-button style="float: right; padding: 3px 0" type="text">进入投票</el-button>
-            </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
-            </div>
+            <el-rate
+                v-model="randomArr[index % 20]"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="{value}">
+            </el-rate>
         </el-card>
     </div>
 </template>
@@ -43,11 +26,32 @@ export default {
     name: 'voteList',
     data(){
         return {
-
+            msgList: [],
+            value5: 3.7,
+            randomArr: []
+        }
+    },
+    mounted() {
+        this.getVoteItemLists();
+        for(var i = 0; i < 20; i++){
+            this.randomArr.push(parseFloat((Math.random() * 2).toFixed(1)) + 3 );
         }
     },
     methods: {
+        getVoteItemLists(){
+            this.axios.post(this.url + '/GetVoteList')
+                .then((data) => {
+                    console.log(data);
+                    this.msgList = data.data;
+                })
+                .catch((err) => {
 
+                })
+        },
+        goToClick(id){
+            // 传递item的ID
+            this.$router.push('/home/votedetail/'+ id);
+        }
     }
 }
 </script>
@@ -73,8 +77,8 @@ export default {
 
   .box-card {
     width: 465px;
-    display: inline-block;
-    margin: 10px 20px;
+    /* display: inline-block; */
+    margin: 10px 10px;
   }
 
   .cardName{

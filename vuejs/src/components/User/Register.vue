@@ -24,7 +24,7 @@
         </div>
         <br>
         <el-row>
-            <el-button  type="success" round size="small">Register</el-button>
+            <el-button  type="success" round size="small" @click="UserRegister">Register</el-button>
             <el-button plain round size="small" @click="GoToLogin"> go to login</el-button>
         </el-row>
     </div>
@@ -42,6 +42,33 @@ export default {
     methods: {
         GoToLogin(){
             this.$router.push('/login');
+        },
+        UserRegister(){
+            var data = {
+                username: this.username,
+                password: this.password
+            }
+            this.axios.post(this.url + '/register', data)
+                .then((data) => {
+                    console.log(data);
+                    if(data.data == 1) {
+                        this.$message({
+                            message: '用户注册成功！',
+                            type: 'success'
+                        });
+                    } else {
+                        this.$message({
+                            message: '用户注册失败！',
+                            type: 'warning'
+                        });
+                    }
+                })
+                .catch((err) => {
+                        this.$message({
+                            message: '程序出错',
+                            type: 'error'
+                        })
+                })
         }
     },
 }

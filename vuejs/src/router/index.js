@@ -6,6 +6,10 @@ import Login from '@/components/User/Login'
 import Register from '@/components/User/Register'
 import VoteIndex from '@/components/Vote/VoteIndex'
 import VoteList from '@/components/Vote/VoteList'
+import AddVoteItem from '@/components/Vote/VoteAdd'
+import VoteDetail from '@/components/Vote/VoteDetail'
+import UserItem from '@/components/User/UserItem'
+
 
 Vue.use(Router)
 
@@ -29,9 +33,21 @@ export default new Router({
       component: VoteIndex,
       children: [
         {
-          path: '/',
+          path: 'Index',
           name: 'VoteIndex',
           component: VoteList
+        },{
+          path: 'addVoteItem',
+          name: 'AddVoteItem',
+          component: AddVoteItem
+        },{
+          path: 'votedetail/:num',
+          name: 'VoteDetail',
+          component: VoteDetail
+        },{
+          path: 'useritem',
+          name: 'UserItem',
+          component: UserItem
         }
       ]
     }

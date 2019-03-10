@@ -11,8 +11,8 @@ import axios from 'axios';
 
 Vue.use(ElementUI);
 Vue.prototype.axios = axios;
-
-
+Vue.prototype.url = "http://localhost:52289/api";
+Vue.prototype.uname = '';
 
 Vue.config.productionTip = false
 
